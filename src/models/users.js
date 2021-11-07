@@ -13,5 +13,16 @@ module.exports = {
                 else resolve(res.insertId);
             });
         })
+    },
+
+    async getForDiscordID(discordID)
+    {
+        return new Promise(resolve => {
+            db.query(`SELECT * FROM ${this.table} WHERE discord_id = ?`, [discordID], (err, rows) => {
+                if(err) console.log(err);
+                else resolve(rows[0]);
+            })
+        });
     }
+
 }
