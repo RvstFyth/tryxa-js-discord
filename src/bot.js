@@ -23,6 +23,7 @@ client.on('messageCreate', async message => {
         const instance = Application.getCommand(commandName);
         if (instance) {
             const command = new instance(message);
+            command.setArguments(msgSplitted.splice(1));
             await command.run();
         }
     }
