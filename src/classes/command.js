@@ -23,7 +23,7 @@ class Command
 
             this.message.channel.send({embeds: [embed]}).then(async msg => {
                 await msg.react(emojiHelper.baseEmojis.confirm);
-                const filter = (reaction, user) => reaction.emoji.name === emojiHelper.baseEmojis.confirm;// && user.id === this.message.author.id;
+                const filter = (reaction, user) => reaction.emoji.name === emojiHelper.baseEmojis.confirm && user.id === this.message.author.id;
 
                 msg.awaitReactions({filter, max: 1, time: 10*1000}).then(async collected => {
                     const reaction = collected.first();
