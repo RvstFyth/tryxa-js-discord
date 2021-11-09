@@ -10,5 +10,8 @@
   },
   "scripts": {
     "migrate": "node node_modules/db-migrate/bin/db-migrate -e mysql"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0"
   }
 }
