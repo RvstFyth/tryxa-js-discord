@@ -24,7 +24,6 @@ class Application
                 const name = file.replace('.js', '');
                 delete require.cache[require.resolve(path + '/' + file)];
                 this.commands[name] = require(path + '/' + file);
-                console.log(this.commands[name]);
             }
         });
     }
