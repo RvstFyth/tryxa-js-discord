@@ -3,8 +3,10 @@ const con = require('./config.json');
 
 const Application = require('./classes/application');
 
-//const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES], partials: ["CHANNEL"] });
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.DIRECT_MESSAGE_REACTIONS],
+    partials: ["CHANNEL", "REACTION", "MESSAGE"]
+});
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
