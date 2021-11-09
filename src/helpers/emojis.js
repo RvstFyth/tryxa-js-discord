@@ -1,6 +1,7 @@
 module.exports = {
 
     baseEmojis: {
-        confirm: `✅`
+        confirm: `✅`,
+        deny: `🛑`
     }
 };
