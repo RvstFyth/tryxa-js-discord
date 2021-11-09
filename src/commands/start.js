@@ -1,5 +1,6 @@
 const Command = require('../classes/command');
 const usersModel = require('../models/users');
+const userStatsModel = require('../models/userStats');
 
 class Start extends Command
 {
@@ -21,7 +22,8 @@ class Start extends Command
 
         const confirmed = await this.askToConfirm(`**${this.message.author.username}**, are you sure you want to name your character: ${this.arguments[0]}?`, true);
         if(confirmed) {
-            await usersModel.create(this.message.author.id, this.arguments[0]);
+            const userID = await usersModel.create(this.message.author.id, this.arguments[0]);
+            await userStatsModel.create(userID);
             await this.message.reply(`Welcome to **Tryxa** ${this.message.author.username}! See the \`help\` files to get started!`);
         }
     }
