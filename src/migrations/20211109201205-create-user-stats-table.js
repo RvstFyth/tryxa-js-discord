@@ -19,8 +19,8 @@ exports.up = function(db) {
   return db.createTable('user_stats', {
     user_id: { type: 'int', primaryKey: true, autoIncrement: false },
     strength: { type: 'int', defaultValue: 1 },
-    Intelligence: { type: 'int', defaultValue: 1 },
-    wisdowm: { type: 'int', defaultValue: 1 },
+    intelligence: { type: 'int', defaultValue: 1 },
+    wisdom: { type: 'int', defaultValue: 1 },
     dexterity: { type: 'int', defaultValue: 1 },
     constitution: { type: 'int', defaultValue: 1 },
     luck: { type: 'int', defaultValue: 1 },
