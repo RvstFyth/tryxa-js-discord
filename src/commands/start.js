@@ -9,10 +9,9 @@ class Start extends Command
     description = `Create a account`;
     aliasses = [];
 
-    async run()
+    async run(character)
     {
-        const existingCharacter = await usersModel.getForDiscordID(this.message.author.id);
-        if(existingCharacter) {
+        if(character) {
             return this.message.channel.send({content:`**${this.message.author.username}** you already have a account!`});
         }
 
