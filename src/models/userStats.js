@@ -11,5 +11,14 @@ module.exports = {
                 else resolve(true);
             });
         });
+    },
+
+    async get(id) {
+        return new Promise(resolve => {
+            db.query(`SELECT * FROM ${this.table} WHERE user_id = ?`, [id], (err, rows) => {
+                if(err) console.log(err);
+                else resolve(rows[0]);
+            });
+        });
     }
 };
