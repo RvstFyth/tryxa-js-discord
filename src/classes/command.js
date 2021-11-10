@@ -5,9 +5,10 @@ const emojis = [emojiHelper.baseEmojis.confirm, emojiHelper.baseEmojis.deny];
 class Command
 {
 
-    constructor(message) {
+    constructor(message, prefix) {
         this.message = message;
         this.arguments = [];
+        this.prefix = prefix;
     }
 
     setArguments(args)
