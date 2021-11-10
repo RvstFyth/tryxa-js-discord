@@ -25,7 +25,7 @@ client.on('messageCreate', async message => {
         const commandName = msgSplitted[0];
         const instance = Application.getCommand(commandName);
         if (instance) {
-            const character = characterHelper.get(message.author.id);
+            const character = await characterHelper.get(message.author.id);
             const command = new instance(message);
             command.setArguments(msgSplitted.splice(1));
             await command.run(character);
