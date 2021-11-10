@@ -10,5 +10,9 @@ module.exports = {
         "ecmaVersion": 13
     },
     "rules": {
+        "no-unreachable": "error",
+        "no-unreachable-loop": "warn",
+        "no-unused-vars": "error",
+        "no-use-before-define": "error"
     }
 };
