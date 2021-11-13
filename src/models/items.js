@@ -46,5 +46,15 @@ module.exports = {
                 else resolve(rows);
             });
         });
+    },
+
+    async getWhereIdIn(ids)
+    {
+        return new Promise(resolve => {
+            db.query(`SELECT * FROM ${this.table} WHERE id IN (?)`, [ids], (err, rows) => {
+                if(err) console.log(err);
+                else resolve(rows);
+            });
+        });
     }
 }

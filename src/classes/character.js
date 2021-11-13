@@ -17,6 +17,9 @@ class Character
     {
         if(typeof this.equipped[slot] !== 'undefined') {
             this.equipped[slot] = item;
+            for(let i in item.stats) {
+                this.stats[i] += item.stats[i];
+            }
         }
     }
 
