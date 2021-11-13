@@ -26,8 +26,9 @@ client.on('messageCreate', async message => {
         const instance = Application.getCommand(commandName);
         if (instance) {
             const character = await characterHelper.get(message.author.id);
+            if(!character && ['start', 'help'].indexOf(commandName) < 0) return message.reply(`You don't have an account yet.. You can create one with the \`${prefix}start characterName\` command.`);
             const command = new instance(message, prefix);
-            command.setTranslationCode(character.language);
+            if(character) command.setTranslationCode(character.language);
             command.setArguments(msgSplitted.splice(1));
             await command.run(character);
         }
