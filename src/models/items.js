@@ -8,7 +8,7 @@ module.exports = {
     {
         return new Promise(resolve => {
             db.query(
-                `INSERT INTO {this.table} (user_id, \`name\`, rarity, slot, stats, \`level\`) VALUES (?,?,?,?,?,?)`,
+                `INSERT INTO ${this.table} (user_id, \`name\`, rarity, slot, stats, \`level\`) VALUES (?,?,?,?,?,?)`,
                 [userID, name, rarity, slot, stats, level],
                 (err) => {
                     if(err) console.log(err);
