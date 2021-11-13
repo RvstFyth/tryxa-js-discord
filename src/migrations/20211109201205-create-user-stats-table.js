@@ -28,7 +28,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  return null;
+  return db.dropTable('user_stats');
 };
 
 exports._meta = {
