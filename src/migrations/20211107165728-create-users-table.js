@@ -19,7 +19,8 @@ exports.up = function(db) {
     id: { type: 'int', primaryKey: true, autoIncrement: true },
     discord_id: 'bigint',
     name: 'string',
-    floor: { type: 'int', defaultValue: 1 }
+    floor: { type: 'int', defaultValue: 1 },
+    xp: { type: 'int', defaultValue: 1 }
   });
 };
 
