@@ -15,11 +15,11 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.addColumn('users', 'translationCode', {type: 'string', defaultValue: 'en'});
 };
 
 exports.down = function(db) {
-  return null;
+  return db.removeColumn('users', 'translationCode');
 };
 
 exports._meta = {
