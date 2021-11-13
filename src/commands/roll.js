@@ -34,7 +34,15 @@ class Roll extends Command
             }
         }
 
-        return this.message.channel.send({content: `Level: ${level}\nTier: ${tier}\nSlot: ${slot}\nRarity: ${rarities[rarity - 1]}\n${JSON.stringify(stats)}`});
+        const finalStats = {};
+        let statsString = '';
+        for(let i in stats) {
+            if(stats[i] > 0) finalStats[i] = stats[i];
+            statsString += `;${i}:${stats[i]}`
+        }
+
+        await itemsModel.create(character.id, 'test item', rarity, slot, statsString, level);
+        return this.message.channel.send({content: `Level: ${level}\nTier: ${tier}\nSlot: ${slot}\nRarity: ${rarities[rarity - 1]}\n${JSON.stringify(finalStats)}`});
     }
 }
 

@@ -37,4 +37,14 @@ module.exports = {
             });
         });
     },
+
+    async getAllForUser(userID)
+    {
+        return new Promise(resolve => {
+            db.query(`SELECT * FROM ${this.table} WHERE user_id = ? ORDER BY id DESC`, [userID], (err, rows) => {
+                if(err) console.log(err);
+                else resolve(rows);
+            });
+        });
+    }
 }
