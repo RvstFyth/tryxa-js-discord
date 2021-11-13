@@ -22,5 +22,15 @@ module.exports = {
                 else resolve(rows[0]);
             });
         });
+    },
+
+    async setSlot(slot, itemID, userID)
+    {
+        return new Promise(resolve => {
+            db.query(`UPDATE ${this.table} SET \`${slot}\` = ? WHERE user_id = ?`, [itemID, userID], (err) => {
+                if(err) console.log(err);
+                else resolve(true);
+            })
+        });
     }
 };
