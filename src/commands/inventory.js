@@ -1,5 +1,6 @@
 const Command = require('../classes/command');
 const itemsModel = require('../models/items');
+const itemsHelper = require('../helpers/items');
 
 class Inventory extends Command
 {
@@ -19,7 +20,7 @@ class Inventory extends Command
 
         let str = '';
         for(let i in items) {
-            str += `${items[i].id} | ${items[i].name} (${items[i].level})\n`;
+            str += `${items[i].id} | ${items[i].name} (${items[i].level}) | ${itemsHelper.rarityMapping[items[i].rarity][0]}\n`;
         }
         str += `\n\nPage: ${page}/${totalPages}`;
         const embed = {
