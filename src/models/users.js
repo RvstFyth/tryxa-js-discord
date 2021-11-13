@@ -23,6 +23,15 @@ module.exports = {
                 else resolve(rows[0]);
             })
         });
-    }
+    },
 
+    async setLanguageCode(userID, val)
+    {
+        return new Promise(resolve => {
+            db.query(`UPDATE ${this.table} SET translationCode = ? WHERE id = ?`, [val, userID], (err) => {
+                if(err) console.log(err);
+                else resolve(true);
+            });
+        });
+    }
 }

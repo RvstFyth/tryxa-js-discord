@@ -27,6 +27,7 @@ client.on('messageCreate', async message => {
         if (instance) {
             const character = await characterHelper.get(message.author.id);
             const command = new instance(message, prefix);
+            command.setTranslationCode(character.language);
             command.setArguments(msgSplitted.splice(1));
             await command.run(character);
         }
