@@ -9,6 +9,32 @@ class Command
         this.message = message;
         this.arguments = [];
         this.prefix = prefix;
+        this.translationCode = 'en';
+    }
+
+    getTranslation(path, key, replace = {})
+    {
+        const translationFile = require('../../public/translations/' + path);
+        if(translationFile && translationFile[key]) {
+            let str;
+            if(translationFile[key][this.translationCode]) str = translationFile[key][this.translationCode];
+            else str = translationFile[key]['en'];
+
+            const replaceKeys = Object.keys(replace);
+            if(replaceKeys.length) {
+                for(let i in replaceKeys) {
+                    str = str.replace(`%${replaceKeys[i]}%`, replace[replaceKeys[i]]);
+                }
+            }
+
+            return str;
+        }
+        else return 'Translation not found...';
+    }
+
+    setTranslationCode(code)
+    {
+        this.translationCode = code;
     }
 
     setArguments(args)
