@@ -14,7 +14,7 @@ class Equip extends Command
 
         if(character.level < item.level) return this.message.channel.send(`**${character.name}** you need to be at least level ${item.level} to equip this..`);
         await equippedModel.setSlot(item.slot, item.id, character.id);
-        return this.message.channel.send(`YES`)
+        return this.message.channel.send(`**${character.name}** equipped a ${item.name}`);
     }
 }
 
