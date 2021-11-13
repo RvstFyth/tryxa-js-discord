@@ -1,0 +1,8 @@
+{
+  "missingOrInvalidTranslationCode": {
+    "en": "language code is missing or invalid... Valid language codes: **%str%**"
+  },
+  "languageSet": {
+    "en": "language successfully set to %lang%"
+  }
+}
