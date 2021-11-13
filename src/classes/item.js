@@ -7,6 +7,7 @@ class Item
         this.slot = record.slot;
         this.rawStats = record.stats;
         this.stats = {};
+        this.level = record.level;
 
         this.parseStats();
     }

@@ -9,7 +9,9 @@ class Equipped extends Command {
         for(let i in character.equipped) {
             fields.push({
                 name: i,
-                value: character.equipped[i] ? character.equipped[i].name : '..',
+                value: character.equipped[i] ?
+                    `${character.equipped[i].name} (${character.equipped[i].level})`
+                    : '..',
                 inline: true
             });
         }
