@@ -15,7 +15,14 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  return null;
+  return db.createTable('items', {
+    id: {type: 'int', primaryKey: true, autoIncrement: true},
+    user_id: {type: 'int', defaultValue: null},
+    name: {type: 'string', defaultValue: ''},
+    rarity: {type: 'int', defaultValue: 0},
+    slot: {type: 'string', defaultValue: ''},
+    stats: {type: 'string', defaultValue: ''}
+  });
 };
 
 exports.down = function(db) {
