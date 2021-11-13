@@ -1,3 +1,5 @@
+const charHelper = require('../helpers/character');
+
 class Character
 {
     
@@ -7,6 +9,8 @@ class Character
         this.name = userRecord.name;
         this.language = userRecord.translationCode;
         this.stats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
+        this.xp = userRecord.xp;
+        this.level = charHelper.xp_to_level(this.xp);
 
         this.equipped = {head: null, body: null, hands: null, legs: null, weapon: null, offhand: null, lfinger: null, rfinger: null};
     }
