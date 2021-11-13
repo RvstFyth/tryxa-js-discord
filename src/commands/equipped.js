@@ -9,7 +9,7 @@ class Equipped extends Command {
         for(let i in character.equipped) {
             fields.push({
                 name: i,
-                value: `X`,
+                value: character.equipped[i] ? character.equipped[i].name : '..',
                 inline: true
             });
         }
