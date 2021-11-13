@@ -8,7 +8,14 @@ class Character
 
         this.stats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
 
-        this.equipped = {head: null, body: null, hands: null, legs: null, weapon: null, offhand: null};
+        this.equipped = {head: null, body: null, hands: null, legs: null, weapon: null, offhand: null, lfinger: null, rfinger: null};
+    }
+
+    setEquipped(slot, item)
+    {
+        if(typeof this.equipped[slot] !== 'undefined') {
+            this.equipped[slot] = item;
+        }
     }
 
     setStatsFromDatabaseRecord(statsRecord)
