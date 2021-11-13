@@ -18,5 +18,8 @@ module.exports = {
     },
     boolean(chance) {
         return randomInstance.bool(chance);
+    },
+    weightedRandom(min, max) {
+        return Math.round(max / (Math.random() * max + min));
     }
 };
