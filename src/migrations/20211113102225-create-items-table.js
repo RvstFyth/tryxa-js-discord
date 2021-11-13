@@ -21,6 +21,7 @@ exports.up = function(db) {
     name: {type: 'string', defaultValue: ''},
     rarity: {type: 'int', defaultValue: 0},
     slot: {type: 'string', defaultValue: ''},
+    level: {type: 'int', defaultValue: 1},
     stats: {type: 'string', defaultValue: ''}
   });
 };
