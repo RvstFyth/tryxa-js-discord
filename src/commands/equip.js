@@ -12,6 +12,7 @@ class Equip extends Command
         const item = await itemsModel.getForUser(this.arguments[0], character.id);
         if(!item) return this.message.channel.send(`**${character.name}** you don't own a item with id ${this.arguments[0]}`);
 
+        if(character.level < item.level) return this.message.channel.send(`**${character.name}** you need to be at least level ${item.level} to equip this..`);
         await equippedModel.setSlot(item.slot, item.id, character.id);
         return this.message.channel.send(`YES`)
     }
