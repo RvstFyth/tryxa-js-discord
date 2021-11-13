@@ -1,0 +1,18 @@
+{
+  "alreadyRegistered": {
+    "en": "you already have a account!",
+    "es": ""
+  },
+  "noNameProvided": {
+    "en": "please provide a name for your character..",
+    "es": ""
+  },
+  "confirm": {
+    "en": "are you sure you want to name your character: %arg%?",
+    "es": "... %arg%?"
+  },
+  "registered": {
+    "en": "Welcome to **Tryxa** %username%! See the \\`help\\` files to get started!",
+    "es": ""
+  }
+}
