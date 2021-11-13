@@ -1,5 +1,3 @@
-const charHelper = require('../helpers/character');
-
 class Character
 {
     
@@ -10,7 +8,7 @@ class Character
         this.language = userRecord.translationCode;
         this.stats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
         this.xp = userRecord.xp;
-        this.level = charHelper.xp_to_level(this.xp);
+        this.level = this.xpToLevel(this.xp);
 
         this.equipped = {head: null, body: null, hands: null, legs: null, weapon: null, offhand: null, lfinger: null, rfinger: null};
     }
@@ -30,6 +28,20 @@ class Character
         this.stats.dexterity = statsRecord.dexterity;
         this.stats.constitution = statsRecord.constitution;
         this.stats.luck = statsRecord.luck;
+    }
+
+    levelToExp (level)
+    {
+        let xp = 0;
+        for (let i = 1; i < level; i++) xp += Math.floor(i + 300 * Math.pow(2, i / 7));
+        return Math.floor(xp / 4);
+    }
+
+    xpToLevel (xp)
+    {
+        let level = 1;
+        while (this.levelToExp(level) < xp) level++;
+        return level - 1;
     }
 }
 
