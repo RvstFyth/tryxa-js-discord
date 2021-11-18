@@ -19,7 +19,7 @@ module.exports = {
         return new Promise(resolve => {
             db.query(`SELECT * FROM ${this.table} WHERE user_id = ?`, [userID], (err, rows) => {
                 if(err) console.log(err);
-                else resolve(true);
+                else resolve(rows);
             })
         });
     }
