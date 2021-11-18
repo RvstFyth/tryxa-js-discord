@@ -2,6 +2,7 @@ const usersModel = require('../models/users');
 const itemsModel = require('../models/items');
 const userStatsModel = require('../models/userStats');
 const userEquippedModel = require('../models/userEquipped');
+const userMovesModel = require('../models/userMoves');
 const Item = require('../classes/item');
 const Character = require('../classes/character');
 
@@ -29,6 +30,16 @@ module.exports = {
             const equippedItems = await itemsModel.getWhereIdIn(equippedIDs);
             for(let i in equippedItems) {
                 character.setEquipped(equippedItems[i].slot, new Item(equippedItems[i]));
+            }
+
+            const moves = await userMovesModel.getAllFor(userRecord.id);
+            for(let move of moves) {
+                const module = require('../classes/moves/'+move.move);
+                if(module) {
+                    const m = new module();
+                    m.setLearned(move.learned);
+                    character.setMove(m);
+                }
             }
 
             return character;

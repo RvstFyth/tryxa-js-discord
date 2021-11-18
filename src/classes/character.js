@@ -26,6 +26,11 @@ class Character
         this.moves.push(move);
     }
 
+    getMoves()
+    {
+        return this.moves;
+    }
+
     setEquipped(slot, item)
     {
         if(typeof this.equipped[slot] !== 'undefined') {
