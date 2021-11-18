@@ -32,7 +32,7 @@ module.exports = {
                 character.setEquipped(equippedItems[i].slot, new Item(equippedItems[i]));
             }
 
-            const moves = await userMovesModel.getAllFor(userRecord.id);
+            const moves = await userMovesModel.getAllActiveFor(userRecord.id);
             for(let move of moves) {
                 const module = require('../classes/moves/'+move.move);
                 if(module) {

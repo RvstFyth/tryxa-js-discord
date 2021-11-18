@@ -14,7 +14,7 @@ module.exports = {
         });
     },
 
-    async getAllFor(userID)
+    async getAllActiveFor(userID)
     {
         return new Promise(resolve => {
             db.query(`SELECT * FROM ${this.table} WHERE user_id = ?`, [userID], (err, rows) => {
