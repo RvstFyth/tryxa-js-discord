@@ -36,7 +36,7 @@ module.exports = {
             for(let move of moves) {
                 const module = require('../classes/moves/'+move.move);
                 if(module) {
-                    const m = new module();
+                    const m = new module(character);
                     m.setLearned(move.learned);
                     character.setMove(m);
                 }

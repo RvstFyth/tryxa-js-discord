@@ -6,8 +6,8 @@ class Kick extends Move
 
     description = 'Kicks the selected target';
 
-    constructor() {
-        super();
+    constructor(character) {
+        super(character);
     }
 }
 

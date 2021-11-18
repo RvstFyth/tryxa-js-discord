@@ -3,7 +3,7 @@ class Move
 
     constructor(character) {
         this.character = character;
-        this.cooldown = 1;
+        this.cooldown = 0;
         this.learned = null;
     }
 
