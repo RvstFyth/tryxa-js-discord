@@ -10,7 +10,20 @@ class Character
         this.xp = userRecord.xp;
         this.level = this.xpToLevel(this.xp);
 
+        this.moves = [];
+        this.effects = [];
+
         this.equipped = {head: null, body: null, hands: null, legs: null, weapon: null, offhand: null, lfinger: null, rfinger: null};
+    }
+
+    setEffect(effect)
+    {
+        this.effects.push(effect);
+    }
+
+    setMove(move)
+    {
+        this.moves.push(move);
     }
 
     setEquipped(slot, item)
