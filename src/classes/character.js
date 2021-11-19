@@ -7,13 +7,17 @@ class Character
         this.name = userRecord.name;
         this.language = userRecord.translationCode;
         this.stats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
+        this.originalStats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
         this.xp = userRecord.xp;
         this.level = this.xpToLevel(this.xp);
+        this.discordID = userRecord.discord_id;
 
         this.moves = [];
         this.effects = [];
 
         this.equipped = {head: null, body: null, hands: null, legs: null, weapon: null, offhand: null, lfinger: null, rfinger: null};
+
+        this.ai = userRecord.ai;
     }
 
     setEffect(effect)
@@ -41,14 +45,22 @@ class Character
         }
     }
 
+    calculateStats()
+    {
+        this.stats = {...this.originalStats};
+
+    }
+
     setStatsFromDatabaseRecord(statsRecord)
     {
-        this.stats.strength = statsRecord.strength;
-        this.stats.intelligence = statsRecord.intelligence;
-        this.stats.wisdom = statsRecord.wisdom;
-        this.stats.dexterity = statsRecord.dexterity;
-        this.stats.constitution = statsRecord.constitution;
-        this.stats.luck = statsRecord.luck;
+        this.stats.strength = parseInt(statsRecord.strength);
+        this.stats.intelligence = parseInt(statsRecord.intelligence);
+        this.stats.wisdom = parseInt(statsRecord.wisdom);
+        this.stats.dexterity = parseInt(statsRecord.dexterity);
+        this.stats.constitution = parseInt(statsRecord.constitution);
+        this.stats.luck = parseInt(statsRecord.luck);
+
+        this.originalStats = {...this.stats};
     }
 
     levelToExp (level)

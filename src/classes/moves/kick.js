@@ -6,8 +6,20 @@ class Kick extends Move
 
     description = 'Kicks the selected target';
 
-    constructor(character) {
+    constructor(character)
+    {
         super(character);
+    }
+
+    run(targets)
+    {
+        const target = targets[0];
+        if(target) {
+
+        }
+        else {
+            // TODO:
+        }
     }
 }
 
