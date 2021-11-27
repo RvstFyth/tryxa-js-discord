@@ -26,10 +26,21 @@ class Inventory extends Command
             if(equipped) str += `**`;
             str += `${items[i].id} | ${items[i].name} (${items[i].level}) | ${itemsHelper.rarityMapping[items[i].rarity]} ${equipped ? `**` : ``}\n`;
         }
-        str += `\n\nPage: ${page}/${totalPages}`;
+        const fields = [
+            {
+                name: `\u200b`,
+                value: `` +
+                    `\`${this.prefix}equip <id>\` to equip an item\n` +
+                    `\`${this.prefix}destroy <id>\` to destroy an item`
+            }
+        ];
         const embed = {
             title: `${character.name} inventory`,
-            description: str
+            description: str,
+            footer: {
+                text: `Page: ${page}/${totalPages}`
+            },
+            fields
         }
 
         return this.message.channel.send({embeds: [embed]});
