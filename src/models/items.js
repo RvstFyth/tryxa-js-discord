@@ -56,5 +56,15 @@ module.exports = {
                 else resolve(rows);
             });
         });
+    },
+
+    async delete(id)
+    {
+        return new Promise(resolve => {
+            db.query(`DELETE FROM ${this.table} WHERE id = ?`, [id], (err) => {
+                if(err) console.log(err);
+                else resolve(true);
+            })
+        });
     }
 }
