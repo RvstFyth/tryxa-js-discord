@@ -24,7 +24,7 @@ class Inventory extends Command
         for(let i in items) {
             let equipped = equippedIDs.indexOf(items[i].id) > -1;
             if(equipped) str += `**`;
-            str += `${items[i].id} | ${items[i].name} (${items[i].level}) | ${itemsHelper.rarityMapping[items[i].rarity][0]} ${equipped ? `**` : ``}\n`;
+            str += `${items[i].id} | ${items[i].name} (${items[i].level}) | ${itemsHelper.rarityMapping[items[i].rarity]} ${equipped ? `**` : ``}\n`;
         }
         str += `\n\nPage: ${page}/${totalPages}`;
         const embed = {
