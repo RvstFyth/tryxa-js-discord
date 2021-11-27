@@ -33,5 +33,25 @@ module.exports = {
                 else resolve(true);
             });
         });
+    },
+
+    async addXp(userID, val)
+    {
+        return new Promise(resolve => {
+            db.query(`UPDATE ${this.table} SET xp = xp + ? WHERE id = ?`, [parseInt(val), userID], (err) => {
+                if(err) console.log(err);
+                else resolve(true);
+            });
+        });
+    },
+
+    async addGold(userID, val)
+    {
+        return new Promise(resolve => {
+            db.query(`UPDATE ${this.table} SET gold = gold + ? WHERE id = ?`, [parseInt(val), userID], (err) => {
+                if(err) console.log(err);
+                else resolve(true);
+            });
+        });
     }
 }

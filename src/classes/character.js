@@ -9,7 +9,7 @@ class Character
         this.stats = {health: 10, strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
         this.originalStats = {health: 10, strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
         this.xp = userRecord.xp;
-        this.level = this.xpToLevel(this.xp);
+        this.level = userRecord.level ? userRecord.level : this.xpToLevel(this.xp);
         this.discordID = userRecord.discord_id;
 
         this.moves = [];
