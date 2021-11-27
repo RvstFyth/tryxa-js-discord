@@ -2,6 +2,7 @@ const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 
 const Command = require('../classes/command');
 const Character = require('../classes/character');
+const random = require('../helpers/random');
 
 const mobs = [
     {
@@ -64,7 +65,12 @@ class Fight extends Command
                         const move = Object.values(character.moves).filter(m => m.name === selectedMove)[0];
                         if(move) {
 
-                            const result = move.run([mob]);
+                            let result = move.run([mob]);
+
+                            const aiMove = random.arrayValue(Object.values(mob.moves));
+                            if(aiMove) {
+                                result += `\n${aiMove.run([character])}`
+                            }
                             //embed.description = move.run([mob]);
                             interaction.update({
                                 components: [],
