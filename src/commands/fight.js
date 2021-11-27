@@ -23,7 +23,12 @@ class Fight extends Command
         if(!isNaN(this.arguments[0])) level = parseInt(this.arguments[0]);
         else level = character.level;
 
-        const mob = this.composeMob(mobs[level - 1], level);
+        let mobData = mobs[level - 1];
+        if(!mobData) {
+            mobData = mobs[mobs.length - 1];
+        }
+
+        const mob = this.composeMob(mobData, level);
 
         return this.turn(character, mob);
     }
