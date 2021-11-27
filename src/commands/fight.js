@@ -25,7 +25,7 @@ class Fight extends Command
         return this.turn(character, mob);
     }
 
-    async turn(character, mob)
+    async turn(character, mob, lastResult = null)
     {
         const fields = [];
 
@@ -36,6 +36,7 @@ class Fight extends Command
                 inline: true
             };
 
+            field.value += `Health: ${char.stats.health} \n`;
             field.value += `Strength: ${char.stats.strength} \n`;
             field.value += `Intelligence: ${char.stats.intelligence} \n`;
             field.value += `Wisdom: ${char.stats.wisdom} \n`;
@@ -48,7 +49,7 @@ class Fight extends Command
         const embed = {
             title: `${character.name} vs ${mob.name}`,
             fields,
-            description: "Select a move from the list"
+            description: lastResult ? lastResult : 'Select a move from the list'
         }
 
         const menu = this.composeSelectMoveMenu(character, mob);
@@ -56,11 +57,22 @@ class Fight extends Command
         this.message.channel.send({embeds: [embed], components: [menu]}).then(async message => {
             const filter = (interaction) => interaction.customId === 'select_move' && interaction.user.id === character.discordID;
 
-            message.awaitMessageComponent({ filter, time: 120000, max: 1 })
-                .then(interaction => {
+            message.awaitMessageComponent({ filter, time: 10 * 60 * 1000, max: 99 })
+                .then(async interaction => {
                     const selectedMove = interaction.values[0];
                     if(selectedMove) {
-                        this.message.channel.send(`You selected ${selectedMove}`);
+                        const move = Object.values(character.moves).filter(m => m.name === selectedMove)[0];
+                        if(move) {
+
+                            const result = move.run([mob]);
+                            //embed.description = move.run([mob]);
+                            interaction.update({
+                                components: [],
+                                //embeds: [embed]
+                            });
+                            // await interaction.deferReply();
+                            return this.turn(character, mob, result);
+                        }
                     }
                 })
         });
