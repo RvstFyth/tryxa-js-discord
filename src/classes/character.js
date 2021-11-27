@@ -6,8 +6,8 @@ class Character
         this.id = userRecord.id;
         this.name = userRecord.name;
         this.language = userRecord.translationCode;
-        this.stats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
-        this.originalStats = {strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
+        this.stats = {health: 10, strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
+        this.originalStats = {health: 10, strength: 1, intelligence: 1, wisdom: 1, dexterity: 1, constitution: 1, luck: 1};
         this.xp = userRecord.xp;
         this.level = this.xpToLevel(this.xp);
         this.discordID = userRecord.discord_id;
@@ -39,16 +39,22 @@ class Character
     {
         if(typeof this.equipped[slot] !== 'undefined') {
             this.equipped[slot] = item;
-            for(let i in item.stats) {
-                this.stats[i] += item.stats[i];
-            }
         }
+
+        this.calculateStats();
     }
 
     calculateStats()
     {
         this.stats = {...this.originalStats};
+        for(let i in this.equipped) {
+            if(!this.equipped[i]) continue;
+            for(let j in this.equipped[i].stats) {
+                this.stats[j] += this.equipped[i].stats[j];
+            }
+        }
 
+        this.stats.health = 10 + this.stats.constitution;
     }
 
     setStatsFromDatabaseRecord(statsRecord)
