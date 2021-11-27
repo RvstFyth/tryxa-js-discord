@@ -1,0 +1,11 @@
+{
+  "noArguments": {
+    "en": "what are you trying to remove??"
+  },
+  "invalidSlot": {
+    "en": "invalid slot provided.."
+  },
+  "removed": {
+    "en": "put the item back in their inventory"
+  }
+}

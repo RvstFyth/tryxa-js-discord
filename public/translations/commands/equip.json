@@ -1,0 +1,14 @@
+{
+  "noArguments": {
+    "en": "what are you trying to equip??"
+  },
+  "notFound": {
+    "en": "you don't own a item with id %id%"
+  },
+  "lowLevel": {
+    "en": "you need to be at least level %level% to equip this.."
+  },
+  "equipped": {
+    "en": "equipped a %item%"
+  }
+}
