@@ -52,7 +52,7 @@ class Roll extends Command
             statsString += `;${i}:${stats[i]}`
         }
 
-        await itemsModel.create(character.id, 'test item', rarity, slot, statsString, level);
+        await itemsModel.create(character.id, name, rarity, slot, statsString, level);
         return this.message.channel.send({content: `Name: ${name}\nLevel: ${level}\nTier: ${tier}\nSlot: ${slot}\nRarity: ${rarities[rarity - 1]}\n${JSON.stringify(finalStats)}`});
     }
 }
