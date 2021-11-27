@@ -3,6 +3,8 @@ const { MessageActionRow, MessageSelectMenu } = require('discord.js');
 const Command = require('../classes/command');
 const Character = require('../classes/character');
 const random = require('../helpers/random');
+const itemsHelper = require('../helpers/items');
+const usersModel = require('../models/users');
 
 const mobs = [
     {
@@ -65,23 +67,42 @@ class Fight extends Command
                         const move = Object.values(character.moves).filter(m => m.name === selectedMove)[0];
                         if(move) {
 
+                            interaction.update({
+                                components: [],
+                            });
+
                             let result = move.run([mob]);
+                            if(mob.stats.health < 1) return this.playerWon(character, mob);
 
                             const aiMove = random.arrayValue(Object.values(mob.moves));
+                            if(character.stats.health < 1) return this.playerLost(character, mob);
+
                             if(aiMove) {
                                 result += `\n${aiMove.run([character])}`
                             }
-                            //embed.description = move.run([mob]);
-                            interaction.update({
-                                components: [],
-                                //embeds: [embed]
-                            });
-                            // await interaction.deferReply();
+
                             return this.turn(character, mob, result);
                         }
                     }
                 })
         });
+    }
+
+    async playerWon(character, mob)
+    {
+        const level = mob.level;
+        const xpGain = parseInt((7 + level) * 1.6);
+        await usersModel.addXp(character.id, xpGain);
+
+        const gold = random.number((level * 2), (level * 20));
+        await usersModel.addGold(character.id, gold);
+
+        return this.message.channel.send(`**${character.name}** won against ${mob.name}!\nRewards: ${xpGain}xp and ${gold} gold..`);
+    }
+
+    async playerLost(character, mob)
+    {
+        return this.message.channel.send(`**${character.name}** lost against ${mob.name}...`);
     }
 
     composeSelectMoveMenu(character, mob)
