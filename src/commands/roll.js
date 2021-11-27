@@ -11,7 +11,7 @@ class Roll extends Command
         if (this.arguments[0] && !isNaN(this.arguments[0])) level = parseInt(this.arguments[0]);
         const tier = parseInt(level / 10);
 
-        const slots = ['head', 'body', 'hands', 'legs', 'weapon', 'offhand', 'lfinger', 'rfinger'];
+        const slots = ['head', 'body', 'hands', 'legs', 'weapon', 'offhand', 'finger', 'finger'];
         const slot = random.arrayValue(slots);
 
         const stats = {
@@ -21,9 +21,20 @@ class Roll extends Command
         const rarities = ['common', 'uncommon', 'rare', 'epic', 'LEGENDARY'];
         const rarity = random.weightedRandom(1, rarities.length);
 
-        if(['lfinger', 'rfinger'].indexOf(slot) > -1)  stats['luck'] = 0;
+        if(['finger', 'finger'].indexOf(slot) > -1)  stats['luck'] = 0;
 
         const maxStats = level + rarity;
+
+        let name;
+        switch (slot) {
+            case 'finger': name = 'ring'; break;
+            case 'body': name = 'armor'; break;
+            case 'head': name = 'helmet'; break;
+            case 'hands': name = 'gloves'; break;
+            case 'legs': name = 'leggings'; break;
+            case 'weapon': name = 'sword'; break;
+            case 'offhand': name = 'shield'; break;
+        }
 
         for(let i = 0; i <= maxStats; i++) { // levels + 1 = amount of stats point applied
             const randomStat = random.arrayValue(Object.keys(stats));
@@ -42,7 +53,7 @@ class Roll extends Command
         }
 
         await itemsModel.create(character.id, 'test item', rarity, slot, statsString, level);
-        return this.message.channel.send({content: `Level: ${level}\nTier: ${tier}\nSlot: ${slot}\nRarity: ${rarities[rarity - 1]}\n${JSON.stringify(finalStats)}`});
+        return this.message.channel.send({content: `Name: ${name}\nLevel: ${level}\nTier: ${tier}\nSlot: ${slot}\nRarity: ${rarities[rarity - 1]}\n${JSON.stringify(finalStats)}`});
     }
 }
 
