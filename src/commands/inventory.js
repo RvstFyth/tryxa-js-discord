@@ -18,9 +18,13 @@ class Inventory extends Command
         const offset = page > 1 ? page * perPage - perPage : 0;
         const items = allItems.splice(offset, perPage);
 
+        const equippedIDs = character.getEquippedIDs();
+
         let str = '';
         for(let i in items) {
-            str += `${items[i].id} | ${items[i].name} (${items[i].level}) | ${itemsHelper.rarityMapping[items[i].rarity][0]}\n`;
+            let equipped = equippedIDs.indexOf(items[i].id) > -1;
+            if(equipped) str += `**`;
+            str += `${items[i].id} | ${items[i].name} (${items[i].level}) | ${itemsHelper.rarityMapping[items[i].rarity][0]} ${equipped ? `**` : ``}\n`;
         }
         str += `\n\nPage: ${page}/${totalPages}`;
         const embed = {
