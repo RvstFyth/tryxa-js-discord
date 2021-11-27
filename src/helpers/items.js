@@ -54,6 +54,14 @@ module.exports = {
             case 'offhand': name = 'shield'; break;
         }
 
+        let prefix;
+        switch (slot) {
+            case 'finger': prefix = this.nameMapping.ring[tier]; break;
+            case 'weapon': case 'offhand': prefix = this.nameMapping.weapon[tier]; break;
+            default: prefix = this.nameMapping.armor[tier]; break;
+        }
+        name = `${prefix} ${name}`;
+
         for(let i = 0; i <= maxStats; i++) { // levels + 1 = amount of stats point applied
             const randomStat = random.arrayValue(Object.keys(stats));
             stats[randomStat]++;
