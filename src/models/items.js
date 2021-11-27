@@ -10,9 +10,9 @@ module.exports = {
             db.query(
                 `INSERT INTO ${this.table} (user_id, \`name\`, rarity, slot, stats, \`level\`) VALUES (?,?,?,?,?,?)`,
                 [userID, name, rarity, slot, stats, level],
-                (err) => {
+                (err, res) => {
                     if(err) console.log(err);
-                    else resolve(true);
+                    else resolve(res.insertId);
                 }
             );
         });
