@@ -2,6 +2,7 @@ class Item
 {
     constructor(record)
     {
+        this.id = record.id;
         this.name = record.name;
         this.rarity = record.rarity;
         this.slot = record.slot;
