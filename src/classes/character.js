@@ -44,6 +44,11 @@ class Character
         this.calculateStats();
     }
 
+    getEquippedIDs()
+    {
+        return Object.values(this.equipped).filter(e => e).map(e => e.id);
+    }
+
     calculateStats()
     {
         this.stats = {...this.originalStats};
