@@ -30,8 +30,8 @@ class Inventory extends Command
             {
                 name: `\u200b`,
                 value: `` +
-                    `\`${this.prefix}equip <id>\` to equip an item\n` +
-                    `\`${this.prefix}destroy <id>\` to destroy an item`
+                    `\`${this.prefix}equip <id>\` ${this.getTranslation('commands/inventory', 'equipHelp')}\n` +
+                    `\`${this.prefix}destroy <id>\` ${this.getTranslation('commands/inventory', 'destroyHelp')}`
             }
         ];
         const embed = {

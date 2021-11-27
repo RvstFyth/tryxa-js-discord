@@ -1,22 +1,22 @@
 {
   "alreadyRegistered": {
     "en": "you already have a account!",
-    "es": "",
+    "es": "ya tienes una cuenta!",
     "nl": "je hebt al een account!"
   },
   "noNameProvided": {
     "en": "please provide a name for your character..",
-    "es": "",
+    "es": "por favor, escribe un nombre para tu personaje",
     "nl": "voer een naam in voor je character.."
   },
   "confirm": {
     "en": "are you sure you want to name your character: %arg%?",
-    "es": "... %arg%?",
+    "es": "estás seguro de que quieres llamar a tu personaje: %arg%?",
     "nl": "weet je zeker dat je deze naam wilt gebruiken voor je character: %arg%?"
   },
   "registered": {
     "en": "Welcome to **Tryxa** %username%! See the \\`help\\` files to get started!",
-    "es": "",
+    "es": "Bienvenido a **Tryxa** %username%! Mira los archivos \\`help\\` para comenzar!",
     "nl": "Welcome in **Tryxa** %username%! Raadpleeg de \\`help\\` bestanden voor meer informatie!"
   }
 }
