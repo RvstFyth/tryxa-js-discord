@@ -1,6 +1,6 @@
 # Tryxa discord bot
 
-https://discord.com/api/oauth2/authorize?client_id=744624537580208179&permissions=0&scope=bot%20applications.commands
+https://discord.com/api/oauth2/authorize?client_id=123456789012345678&permissions=0&scope=bot%20applications.commands
 
 ### Database migrations
 https://db-migrate.readthedocs.io/en/latest/Getting%20Started/usage/  
