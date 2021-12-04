@@ -76,7 +76,12 @@ class Fight extends Command
                                 components: [],
                             });
 
-                            let result = move.run([mob]);
+                            let result = '';
+                            for(let char of [character, mob]) {
+                                char.runEffects('pre');
+                            }
+
+                            result += move.run([mob]);
                             if(mob.stats.health < 1) return this.playerWon(character, mob);
 
                             const aiMove = random.arrayValue(Object.values(mob.moves));
@@ -84,6 +89,11 @@ class Fight extends Command
 
                             if(aiMove) {
                                 result += `\n${aiMove.run([character])}`
+                            }
+
+                            for(let char of [character, mob]) {
+                                result += `\n${char.runEffects('post')}`;
+                                char.filterExpiredEffects();
                             }
 
                             return this.turn(character, mob, result);
