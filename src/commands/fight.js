@@ -94,6 +94,9 @@ class Fight extends Command
                             for(let char of [character, mob]) {
                                 result += `\n${char.runEffects('post')}`;
                                 char.filterExpiredEffects();
+
+                                if(mob.stats.health < 1) return this.playerWon(character, mob);
+                                if(character.stats.health < 1) return this.playerLost(character, mob);
                             }
 
                             return this.turn(character, mob, result);
