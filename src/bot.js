@@ -1,6 +1,5 @@
 require('dotenv').config()
 const { Client, Intents } = require('discord.js');
-const con = require('./config.json');
 
 const Application = require('./classes/application');
 const characterHelper = require('./helpers/character');
@@ -36,4 +35,4 @@ client.on('messageCreate', async message => {
     }
 });
 
-client.login(con.discord_token);
+client.login(process.env.DISCORD_TOKEN);
