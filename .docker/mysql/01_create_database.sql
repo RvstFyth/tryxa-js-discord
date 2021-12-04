@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS `tryxa`;
+GRANT ALL privileges ON *.* TO 'dev'@'%';
+FLUSH PRIVILEGES;
