@@ -12,24 +12,32 @@ module.exports = {
     {
         const userRecord = await usersModel.getForDiscordID(discordID);
         if(userRecord) {
-            const userStatsRecord = await userStatsModel.get(userRecord.id);
-            if(!userStatsRecord) await userStatsModel.create(userRecord.id);
+            let userStatsRecord = await userStatsModel.get(userRecord.id);
+            if (!userStatsRecord) {
+                await userStatsModel.create(userRecord.id);
+                userStatsRecord = await userStatsModel.get(userRecord.id);
+            }
 
-            const userEquippedRecord = await userEquippedModel.get(userRecord.id);
-            if(!userEquippedRecord) await userEquippedModel.create(userRecord.id);
+            let userEquippedRecord = await userEquippedModel.get(userRecord.id);
+            if (!userEquippedRecord) {
+                await userEquippedModel.create(userRecord.id);
+                userEquippedRecord = await userEquippedModel.get(userRecord.id);
+            }
 
             const equipkeys = Object.keys(userEquippedRecord).filter(e => e !== 'user_id');
             const equippedIDs = [];
-            for(let i of equipkeys) {
-                if(userEquippedRecord[i]) equippedIDs.push(userEquippedRecord[i]);
+            for (let i of equipkeys) {
+                if (userEquippedRecord[i]) equippedIDs.push(userEquippedRecord[i]);
             }
 
             const character = new Character(userRecord);
             character.setStatsFromDatabaseRecord(userStatsRecord);
 
-            const equippedItems = await itemsModel.getWhereIdIn(equippedIDs);
-            for(let i in equippedItems) {
-                character.setEquipped(equippedItems[i].slot, new Item(equippedItems[i]));
+            if (equippedIDs.length) {
+                const equippedItems = await itemsModel.getWhereIdIn(equippedIDs);
+                for (let i in equippedItems) {
+                    character.setEquipped(equippedItems[i].slot, new Item(equippedItems[i]));
+                }
             }
 
             const moves = await userMovesModel.getAllActiveFor(userRecord.id);
