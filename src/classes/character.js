@@ -25,6 +25,23 @@ class Character
         this.effects.push(effect);
     }
 
+    filterExpiredEffects()
+    {
+        this.effects = this.effects.filter(e => e.turns > 0);
+    }
+
+    runEffects(phase)
+    {
+        let result = '';
+        for(let effect of this.effects) {
+            if(typeof effect[phase] !== 'undefined') {
+                result += `${effect[phase]()}\n`;
+            }
+        }
+
+        return result;
+    }
+
     setMove(move)
     {
         this.moves.push(move);
