@@ -7,6 +7,12 @@ services:
     volumes:
       - ./src:/app/src/
       - ./public:/app/public
+    environment:
+      DB_HOST: mariadb
+      DB_USER: dev
+      DB_PASSWORD: dev
+      DB_DATABASE: tryxa
+      DB_PORT: 3306
   mariadb:
     image: mariadb:latest
     ports:

@@ -10,7 +10,7 @@
     "random-js": "^2.1.0"
   },
   "scripts": {
-    "migrate": "node node_modules/db-migrate/bin/db-migrate -e mysql"
+    "migrate": "node node_modules/db-migrate/bin/db-migrate -e prod"
   },
   "devDependencies": {
     "eslint": "^8.2.0"
