@@ -21,6 +21,9 @@ Create `src/config.json` with the following properties:
 ``` 
 `docker-compose up --build`
 
+## Reloading code after changes
+`docker exec tryx-node-1 pm2 restart bot.js`
+
 ### Database migrations
 https://db-migrate.readthedocs.io/en/latest/Getting%20Started/usage/  
 `npm run migrate create <name>`  
