@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Client, Intents } = require('discord.js');
 const con = require('./config.json');
 
