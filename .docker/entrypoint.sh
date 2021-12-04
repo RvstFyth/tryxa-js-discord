@@ -3,4 +3,4 @@
 cd /app/src || exit
 npm run migrate up
 
-node bot.js
+pm2-runtime bot.js
