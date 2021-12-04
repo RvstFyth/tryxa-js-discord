@@ -5,19 +5,9 @@ https://discord.com/api/oauth2/authorize?client_id=123456789012345678&permission
 ## Installation
 Create a bot application in the Discord developer portal, https://discordjs.guide/preparations/setting-up-a-bot-application.html  
   
-Create `src/config.json` with the following properties:
+Create `src/.env` with the following properties:
 ```
-{  
-    "discord_token":"xxxxxxxxxxxxxxxxxxxx",
-    "discord_client_id": "744624537580208179",
-    "mysql": {
-        "driver": "mysql",
-        "user": "dev",
-        "password": "dev",
-        "host": "mariadb",
-        "database": "tryxa"
-    }
-} 
+DISCORD_TOKEN=xxxxxxxxxxxxxx
 ``` 
 `docker-compose up --build`
 
