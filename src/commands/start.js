@@ -1,6 +1,7 @@
 const Command = require('../classes/command');
 const usersModel = require('../models/users');
 const userStatsModel = require('../models/userStats');
+const usersMovesModel = require('../models/userMoves');
 
 class Start extends Command
 {
@@ -23,6 +24,7 @@ class Start extends Command
         if(confirmed) {
             const userID = await usersModel.create(this.message.author.id, this.arguments[0]);
             await userStatsModel.create(userID);
+            await usersMovesModel.create(userID, 'kick', 65, true);
             await this.message.reply(`${this.getTranslation('commands/start', 'registered', {username: this.message.author.username})}`);
         }
     }
